@@ -7,7 +7,7 @@
     "PIP_BREAK_SYSTEM_PACKAGES": "1",
     "PIP_ROOT_USER_ACTION": "ignore"
   },
-  "runArgs": ["--privileged", "-e", "ESPHOME_DASHBOARD_USE_PING=1"],
+  "runArgs": ["--privileged", "-e", "ESPHOME_DASHBOARD_USE_PING=1", "--network", "host"],
   "appPort": 6052,
   "customizations": {
     "vscode": {

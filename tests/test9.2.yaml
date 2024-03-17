@@ -1,0 +1,28 @@
+# Tests for ln882x boards using LibreTiny
+---
+wifi:
+  ssid: "ssid"
+
+ln882x:
+  board: ln-02
+
+esphome:
+  name: ln882x-test
+
+logger:
+
+ota:
+
+captive_portal:
+
+binary_sensor:
+  - platform: gpio
+    name: Home Button
+    pin: PB08
+
+sensor:
+  - platform: adc
+    id: adc_sensor
+    name: ADC
+    pin: PB03
+    update_interval: 1s

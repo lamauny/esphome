@@ -20,6 +20,7 @@ from esphome.const import (
     PLATFORM_BK72XX,
     PLATFORM_RTL87XX,
     PLATFORM_RP2040,
+    PLATFORM_LN882X,
     PLATFORM_HOST,
 )
 from esphome.coroutine import FakeAwaitable as _FakeAwaitable
@@ -652,8 +653,12 @@ class EsphomeCore:
         return self.target_platform == PLATFORM_RTL87XX
 
     @property
+    def is_ln882x(self):
+        return self.target_platform == PLATFORM_LN882X
+
+    @property
     def is_libretiny(self):
-        return self.is_bk72xx or self.is_rtl87xx
+        return self.is_bk72xx or self.is_rtl87xx or self.is_ln882x
 
     @property
     def is_host(self):

@@ -94,6 +94,7 @@ PIN_SCHEMA_EXTRA = f"libretiny.BASE_PIN_SCHEMA.extend({VAR_PIN_SCHEMA})"
 COMPONENT_MAP = {
     "rtl87xx": "realtek-amb",
     "bk72xx": "beken-72xx",
+    "ln882x": "lightning-ln882x",
 }
 
 
@@ -202,7 +203,7 @@ def write_component_boards(
     # resulting JSON objects
     boards_json = {}
     pins_json = {}
-
+    print("aa", component_dir, component, boards)
     # go through all boards found for this root family
     for board in boards:
         family = "FAMILY_" + board.family.short_name
@@ -240,6 +241,7 @@ def write_component_boards(
         *values.items(),
     )
     # format with black
+    print(code, families)
     code = format_str(code, mode=FileMode())
     # write back to file
     boards_py.write_text(code)
@@ -303,6 +305,7 @@ if __name__ == "__main__":
     # list all boards from ltchiptool
     components_dir = Path(__file__).parent.parent
     boards = [Board(b) for b in Board.get_list()]
+    print("boards:", boards)
     # keep track of all supported root- and chip-families
     components = set()
     families = {}

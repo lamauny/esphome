@@ -1548,6 +1548,7 @@ class SplitDefault(Optional):
         rp2040=vol.UNDEFINED,
         bk72xx=vol.UNDEFINED,
         rtl87xx=vol.UNDEFINED,
+        ln882x=vol.UNDEFINED,
         host=vol.UNDEFINED,
     ):
         super().__init__(key)
@@ -1579,6 +1580,7 @@ class SplitDefault(Optional):
         self._rp2040_default = vol.default_factory(rp2040)
         self._bk72xx_default = vol.default_factory(bk72xx)
         self._rtl87xx_default = vol.default_factory(rtl87xx)
+        self._ln882x_default = vol.default_factory(ln882x)
         self._host_default = vol.default_factory(host)
 
     @property
@@ -1620,6 +1622,8 @@ class SplitDefault(Optional):
             return self._bk72xx_default
         if CORE.is_rtl87xx:
             return self._rtl87xx_default
+        if CORE.is_ln882x:
+            return self._ln882x_default
         if CORE.is_host:
             return self._host_default
         raise NotImplementedError

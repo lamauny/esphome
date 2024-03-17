@@ -1146,6 +1146,8 @@ DeviceInfoResponse APIConnection::device_info(const DeviceInfoRequest &msg) {
   resp.manufacturer = "Beken";
 #elif defined(USE_RTL87XX)
   resp.manufacturer = "Realtek";
+#elif defined(USE_LN882X)
+  resp.manufacturer = "Lightning";
 #elif defined(USE_HOST)
   resp.manufacturer = "Host";
 #endif

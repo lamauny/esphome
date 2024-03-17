@@ -50,6 +50,7 @@ CONFIG_SCHEMA = cv.Schema(
             rp2040=2040,
             bk72xx=8892,
             rtl87xx=8892,
+            ln882x=8892,
         ): cv.port,
         cv.Optional(CONF_PASSWORD): cv.string,
         cv.Optional(

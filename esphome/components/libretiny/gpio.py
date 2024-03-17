@@ -39,9 +39,11 @@ def _is_name_deprecated(value):
 def _lookup_board_pins(board):
     component: LibreTinyComponent = CORE.data[KEY_LIBRETINY][KEY_COMPONENT_DATA]
     board_pins = component.board_pins.get(board, {})
+    print("board_pins:", board_pins)
     # Resolve aliased board pins (shorthand when two boards have the same pin configuration)
     while isinstance(board_pins, str):
         board_pins = board_pins[board_pins]
+    print("board_pins2:", board_pins)
     return board_pins
 
 
@@ -118,6 +120,7 @@ def _translate_pin(value):
             value = int(value[1:])
     except ValueError:
         pass
+    print("value1:", value)
     return value
 
 
@@ -129,6 +132,7 @@ def validate_gpio_pin(value):
     if component.pin_validation:
         value = component.pin_validation(value)
 
+    print("value2:", value)
     return value
 
 
@@ -183,6 +187,7 @@ def validate_gpio_usage(value):
     if component.usage_validation:
         value = component.usage_validation(value)
 
+    print("value3:", value)
     return value
 
 
@@ -194,6 +199,7 @@ BASE_PIN_SCHEMA = pins.gpio_base_schema(
 
 
 async def component_pin_to_code(config):
+    print("config:", config)
     var = cg.new_Pvariable(config[CONF_ID])
     num = config[CONF_NUMBER]
     cg.add(var.set_pin(num))

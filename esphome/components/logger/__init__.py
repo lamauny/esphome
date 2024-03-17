@@ -19,6 +19,7 @@ from esphome.const import (
     CONF_TX_BUFFER_SIZE,
     PLATFORM_BK72XX,
     PLATFORM_RTL87XX,
+    PLATFORM_LN882X,
     PLATFORM_ESP32,
     PLATFORM_ESP8266,
     PLATFORM_RP2040,
@@ -38,6 +39,7 @@ from esphome.components.libretiny import get_libretiny_component, get_libretiny_
 from esphome.components.libretiny.const import (
     COMPONENT_BK72XX,
     COMPONENT_RTL87XX,
+    COMPONENT_LN882X,
 )
 
 CODEOWNERS = ["@esphome/core"]
@@ -95,6 +97,7 @@ UART_SELECTION_ESP8266 = [UART0, UART0_SWAP, UART1]
 UART_SELECTION_LIBRETINY = {
     COMPONENT_BK72XX: [DEFAULT, UART1, UART2],
     COMPONENT_RTL87XX: [DEFAULT, UART0, UART1, UART2],
+    COMPONENT_LN882X: [DEFAULT, UART0, UART1, UART2],
 }
 
 ESP_ARDUINO_UNSUPPORTED_USB_UARTS = [USB_SERIAL_JTAG]
@@ -179,6 +182,7 @@ CONFIG_SCHEMA = cv.All(
                 rp2040=USB_CDC,
                 bk72xx=DEFAULT,
                 rtl87xx=DEFAULT,
+                ln882x=DEFAULT,
             ): cv.All(
                 cv.only_on(
                     [
@@ -187,6 +191,7 @@ CONFIG_SCHEMA = cv.All(
                         PLATFORM_RP2040,
                         PLATFORM_BK72XX,
                         PLATFORM_RTL87XX,
+                        PLATFORM_LN882X,
                     ]
                 ),
                 uart_selection,

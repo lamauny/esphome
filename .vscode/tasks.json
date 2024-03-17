@@ -14,6 +14,18 @@
       "problemMatcher": []
     },
     {
+      "label": "Compile Yaml",
+      "type": "shell",
+      "command": "${command:python.interpreterPath}",
+      "args": [
+        "-m",
+        "esphome",
+        "compile",
+        "config/smartlight01.yaml"
+      ],
+      "problemMatcher": []
+    },
+    {
       "label": "clang-tidy",
       "type": "shell",
       "command": "${command:python.interpreterPath}",

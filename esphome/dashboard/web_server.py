@@ -555,7 +555,11 @@ class DownloadListRequestHandler(BaseHandler):
             from esphome.components.esp32 import get_download_types as esp32_types
 
             downloads = esp32_types(storage_json)
-        elif platform in (const.PLATFORM_RTL87XX, const.PLATFORM_BK72XX):
+        elif platform in (
+            const.PLATFORM_RTL87XX,
+            const.PLATFORM_BK72XX,
+            const.PLATFORM_LN882X,
+        ):
             from esphome.components.libretiny import (
                 get_download_types as libretiny_types,
             )
@@ -755,6 +759,10 @@ class BoardsRequestHandler(BaseHandler):
             from esphome.components.rtl87xx.boards import BOARDS as RTL87XX_BOARDS
 
             boards = RTL87XX_BOARDS
+        elif platform == const.PLATFORM_LN882X:
+            from esphome.components.ln882x.boards import BOARDS as LN882X_BOARDS
+
+            boards = LN882X_BOARDS
         else:
             raise ValueError(f"Unknown platform {platform}")
 

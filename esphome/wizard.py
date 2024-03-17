@@ -105,6 +105,11 @@ rtl87xx:
   board: {board}
 """
 
+LN882X_CONFIG = """
+ln882x:
+  board: {board}
+"""
+
 HARDWARE_BASE_CONFIGS = {
     "ESP8266": ESP8266_CONFIG,
     "ESP32": ESP32_CONFIG,
@@ -113,6 +118,7 @@ HARDWARE_BASE_CONFIGS = {
     "RP2040": RP2040_CONFIG,
     "BK72XX": BK72XX_CONFIG,
     "RTL87XX": RTL87XX_CONFIG,
+    "LN882X": LN882X_CONFIG,
 }
 
 
@@ -175,7 +181,7 @@ def wizard_file(**kwargs):
 """
 
     # pylint: disable=consider-using-f-string
-    if kwargs["platform"] in ["ESP8266", "ESP32", "BK72XX", "RTL87XX"]:
+    if kwargs["platform"] in ["ESP8266", "ESP32", "BK72XX", "RTL87XX", "LN882X"]:
         config += """
   # Enable fallback hotspot (captive portal) in case wifi connection fails
   ap:
@@ -205,6 +211,7 @@ def wizard_write(path, **kwargs):
     from esphome.components.esp8266 import boards as esp8266_boards
     from esphome.components.rp2040 import boards as rp2040_boards
     from esphome.components.rtl87xx import boards as rtl87xx_boards
+    from esphome.components.ln882x import boards as ln882x_boards
 
     name = kwargs["name"]
     board = kwargs["board"]
@@ -224,6 +231,8 @@ def wizard_write(path, **kwargs):
             platform = "BK72XX"
         elif board in rtl87xx_boards.BOARDS:
             platform = "RTL87XX"
+        elif board in ln882x_boards.BOARDS:
+            platform = "LN882X"
         else:
             safe_print(color(Fore.RED, f'The board "{board}" is unknown.'))
             return False
@@ -276,6 +285,7 @@ def wizard(path):
     from esphome.components.esp32 import boards as esp32_boards
     from esphome.components.esp8266 import boards as esp8266_boards
     from esphome.components.rtl87xx import boards as rtl87xx_boards
+    from esphome.components.ln882x import boards as ln882x_boards
 
     if not path.endswith(".yaml") and not path.endswith(".yml"):
         safe_print(
@@ -342,7 +352,7 @@ def wizard(path):
         "firmwares for it."
     )
 
-    wizard_platforms = ["ESP32", "ESP8266", "BK72XX", "RTL87XX"]
+    wizard_platforms = ["ESP32", "ESP8266", "BK72XX", "RTL87XX", "LN882X"]
     safe_print(
         "Please choose one of the supported microcontrollers "
         "(Use ESP8266 for Sonoff devices)."
@@ -372,7 +382,7 @@ def wizard(path):
         board_link = (
             "http://docs.platformio.org/en/latest/platforms/espressif8266.html#boards"
         )
-    elif platform in ["BK72XX", "RTL87XX"]:
+    elif platform in ["BK72XX", "RTL87XX", "LN882X"]:
         board_link = "https://docs.libretiny.eu/docs/status/supported/"
     else:
         raise NotImplementedError("Unknown platform!")
@@ -396,6 +406,9 @@ def wizard(path):
     elif platform == "RTL87XX":
         safe_print(f"For example \"{color(Fore.BOLD_WHITE, 'wr3')}\".")
         boards_list = rtl87xx_boards.BOARDS.items()
+    elif platform == "LN882X":
+        safe_print(f"For example \"{color(Fore.BOLD_WHITE, 'ln-02')}\".")
+        boards_list = ln882x_boards.BOARDS.items()
     else:
         raise NotImplementedError("Unknown platform!")
 
