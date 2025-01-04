@@ -333,14 +333,14 @@ void WiFiComponent::wifi_event_callback_(esphome_wifi_event_id_t event, esphome_
       break;
     }
     case ESPHOME_EVENT_ID_WIFI_AP_STACONNECTED: {
-      auto it = info.wifi_sta_connected;
-      auto &mac = it.bssid;
+      auto it = info.wifi_ap_staconnected;
+      auto &mac = it.mac;
       ESP_LOGV(TAG, "Event: AP client connected MAC=%s", format_mac_addr(mac).c_str());
       break;
     }
     case ESPHOME_EVENT_ID_WIFI_AP_STADISCONNECTED: {
-      auto it = info.wifi_sta_disconnected;
-      auto &mac = it.bssid;
+      auto it = info.wifi_ap_stadisconnected;
+      auto &mac = it.mac;
       ESP_LOGV(TAG, "Event: AP client disconnected MAC=%s", format_mac_addr(mac).c_str());
       break;
     }
