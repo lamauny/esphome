@@ -14,7 +14,7 @@ from esphome.components.esp32.const import (
     VARIANT_ESP32S3,
 )
 from esphome.components.libretiny import get_libretiny_component, get_libretiny_family
-from esphome.components.libretiny.const import COMPONENT_BK72XX, COMPONENT_RTL87XX
+from esphome.components.libretiny.const import COMPONENT_BK72XX, COMPONENT_RTL87XX, COMPONENT_LN882X
 import esphome.config_validation as cv
 from esphome.const import (
     CONF_ARGS,
@@ -37,25 +37,6 @@ from esphome.const import (
     PLATFORM_LN882X,
 )
 from esphome.core import CORE, EsphomeError, Lambda, coroutine_with_priority
-<<<<<<< HEAD
-from esphome.components.esp32 import add_idf_sdkconfig_option, get_esp32_variant
-from esphome.components.esp32.const import (
-    VARIANT_ESP32,
-    VARIANT_ESP32S2,
-    VARIANT_ESP32C3,
-    VARIANT_ESP32S3,
-    VARIANT_ESP32C2,
-    VARIANT_ESP32C6,
-    VARIANT_ESP32H2,
-)
-from esphome.components.libretiny import get_libretiny_component, get_libretiny_family
-from esphome.components.libretiny.const import (
-    COMPONENT_BK72XX,
-    COMPONENT_RTL87XX,
-    COMPONENT_LN882X,
-)
-=======
->>>>>>> origin/dev
 
 CODEOWNERS = ["@esphome/core"]
 logger_ns = cg.esphome_ns.namespace("logger")
